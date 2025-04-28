@@ -44,3 +44,7 @@ struct ForecastView: View {
     ForecastView(isOpen: .constant(true))
         .background(Color.background)
 }
+
+func aaaaa(x: Int) {
+    print("Text this code \(x)")
+}
