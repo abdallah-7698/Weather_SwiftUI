@@ -28,10 +28,6 @@ struct ShapeView: View {
         
     }
     
-    func add() {
-        print("bad code")
-    }
-    
 }
 
 #Preview {
