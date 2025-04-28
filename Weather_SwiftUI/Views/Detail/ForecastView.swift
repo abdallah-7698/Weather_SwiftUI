@@ -12,7 +12,6 @@ struct ForecastView: View {
     @Binding var isOpen: Bool
     
     var body: some View {
-        BottomSheetView(isOpen: $isOpen) {
 
                 ScrollView {
                      
@@ -37,7 +36,6 @@ struct ForecastView: View {
                         .onTapGesture { isOpen.toggle() }
                 }
             
-        }
     }
 }
 

@@ -49,7 +49,12 @@ struct HomeView: View {
                 }
                 .padding(.top, 51)
                 
-                ForecastView(isOpen: $isOpen)
+                BottomSheetView(isOpen: $isOpen, onDrag: { translation in
+                    print("Dragging: \(translation)")
+                }) {
+                    ForecastView(isOpen: $isOpen)
+                }
+
                 
                 TabBar(action: {})
                 

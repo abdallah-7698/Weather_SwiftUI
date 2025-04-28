@@ -14,7 +14,9 @@ fileprivate enum Constants {
 }
 
 struct BottomSheetView<Content: View>: View {
+   
     @Binding var isOpen: Bool
+    private var onDrag: ((CGFloat) -> Void)?
 
     let maxHeight: CGFloat
     let minHeight: CGFloat
@@ -26,10 +28,11 @@ struct BottomSheetView<Content: View>: View {
         isOpen ? 0 : maxHeight - minHeight
     }
 
-    init(isOpen: Binding<Bool>, maxHeight: CGFloat = UIScreen.main.bounds.height*0.93, minHeight: CGFloat = UIScreen.main.bounds.height*0.38, @ViewBuilder content: () -> Content) {
+    init(isOpen: Binding<Bool>, maxHeight: CGFloat = UIScreen.main.bounds.height*0.93, minHeight: CGFloat = UIScreen.main.bounds.height*0.38, onDrag: ((CGFloat) -> Void)? = nil, @ViewBuilder content: () -> Content) {
         self.minHeight = minHeight
         self.maxHeight = maxHeight
         self.content = content()
+        self.onDrag = onDrag
         self._isOpen = isOpen
     }
 
@@ -44,11 +47,13 @@ struct BottomSheetView<Content: View>: View {
                     DragGesture()
                         .updating(self.$translation) { value, state, _ in
                             state = value.translation.height
+                            self.onDrag?(value.translation.height) // call if exists
                         }
                         .onEnded { value in
                             self.isOpen = value.translation.height < 0
                         }
                 )
+
         }
         .edgesIgnoringSafeArea(.all)
     }
@@ -62,3 +67,27 @@ struct BottomSheetView_Previews: PreviewProvider {
         }
     }
 }
+//
+//private struct ButtonSheetDragModifier: ViewModifier {
+//    var onDrag: (CGFloat) -> Void
+//
+//    @GestureState private var dragOffset: CGFloat = 0
+//
+//    func body(content: Content) -> some View {
+//        content
+//            .offset(y: dragOffset)
+//            .gesture(
+//                DragGesture()
+//                    .updating($dragOffset) { value, state, _ in
+//                        state = value.translation.height
+//                        onDrag(value.translation.height)
+//                    }
+//            )
+//    }
+//}
+//
+//extension BottomSheetView {
+//    func onButtonSheetDrag(_ onDrag: @escaping (CGFloat) -> Void) -> some View {
+//        self.modifier(ButtonSheetDragModifier(onDrag: onDrag))
+//    }
+//}
