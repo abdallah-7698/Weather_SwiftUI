@@ -30,3 +30,18 @@ extension View {
         )
     }
 }
+extension View {
+    func innerShadow<S: Shape, SS: ShapeStyle>(shape: S, color: SS, lineWidth: CGFloat = 1, offsetX: CGFloat = 0, offsetY: CGFloat = .zero, blur: CGFloat = 4, blendModel: BlendMode = .normal, opacity: Double = 0.5) -> some View {
+        return self.overlay(content: {
+            shape
+                .stroke(color, lineWidth: lineWidth)
+                .blendMode(blendModel)
+                .offset(x: offsetX,y: offsetY)
+                .blur(radius: blur)
+                .mask(alignment: .center) {
+                    shape
+                }
+                .opacity(opacity)
+        })
+    }
+}
