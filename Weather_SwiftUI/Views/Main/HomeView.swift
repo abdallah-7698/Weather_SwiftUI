@@ -41,7 +41,6 @@ struct HomeView: View {
                             .multilineTextAlignment(.center)
                     }
                     
-                    
                     Text("H:28°   L:18°")
                         .font(.title3)
                         .fontWeight(.semibold)
