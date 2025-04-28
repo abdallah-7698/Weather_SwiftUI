@@ -25,7 +25,13 @@ struct ShapeView: View {
                             .stroke(Color.tabBarBorder, lineWidth: 0.5)
                     })
             }
+        
     }
+    
+    func add() {
+        print("bad code")
+    }
+    
 }
 
 #Preview {
