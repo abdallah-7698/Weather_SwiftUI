@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3FC6522D2DC0FD4500324494 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 3FC6522C2DC0FD4500324494 /* BottomSheet */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		3F9A6F952DBE5FE600BC7FB7 /* Weather_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC6522D2DC0FD4500324494 /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9A6F972DBE5FE600BC7FB7 /* Weather_SwiftUI */,
+				3FC651F62DC0E7EF00324494 /* Frameworks */,
 				3F9A6F962DBE5FE600BC7FB7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +49,13 @@
 				3F9A6F952DBE5FE600BC7FB7 /* Weather_SwiftUI.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3FC651F62DC0E7EF00324494 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +78,7 @@
 			);
 			name = Weather_SwiftUI;
 			packageProductDependencies = (
+				3FC6522C2DC0FD4500324494 /* BottomSheet */,
 			);
 			productName = Weather_SwiftUI;
 			productReference = 3F9A6F952DBE5FE600BC7FB7 /* Weather_SwiftUI.app */;
@@ -94,6 +108,9 @@
 			);
 			mainGroup = 3F9A6F8C2DBE5FE600BC7FB7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3FC6522B2DC0FD4500324494 /* XCRemoteSwiftPackageReference "BottomSheet" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F9A6F962DBE5FE600BC7FB7 /* Products */;
 			projectDirPath = "";
@@ -327,6 +344,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3FC6522B2DC0FD4500324494 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Wouter125/BottomSheet.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.4.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3FC6522C2DC0FD4500324494 /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FC6522B2DC0FD4500324494 /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F9A6F8D2DBE5FE600BC7FB7 /* Project object */;
 }
