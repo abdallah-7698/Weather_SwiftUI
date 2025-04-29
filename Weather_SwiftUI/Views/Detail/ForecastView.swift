@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ForecastView: View {
     
-    @Binding var isOpen: Bool
+    var bottomSheetTranslationProrated: CGFloat = 1
     
     var body: some View {
 
@@ -19,7 +19,7 @@ struct ForecastView: View {
                 .backgroundBlur(radius: 25, opaque: true)
                 .background(Color.bottomSheetBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 44))
-                .innerShadow(shape: RoundedRectangle(cornerRadius: 44), color: Color.bottomSheetBorderMiddle, lineWidth: 1, offsetX: 1, offsetY: 1,blur: 0, blendModel: .overlay, opacity: 1)
+                .innerShadow(shape: RoundedRectangle(cornerRadius: 44), color: Color.bottomSheetBorderMiddle, lineWidth: 1, offsetX: 1, offsetY: 1,blur: 0, blendModel: .overlay, opacity: 1 - bottomSheetTranslationProrated )
                 .overlay {
                     Divider()
                         .blendMode(.overlay)
@@ -33,13 +33,12 @@ struct ForecastView: View {
                         .frame(width: 60, height: 6 )
                         .frame(height: 20)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                        .onTapGesture { isOpen.toggle() }
                 }
             
     }
 }
 
 #Preview {
-    ForecastView(isOpen: .constant(true))
+    ForecastView()
         .background(Color.background)
 }
