@@ -18,10 +18,12 @@ struct HomeView: View {
     @State private var isOpen: Bool = false
     @State var bottomSheetPosition: BottomSheetPosition = .middle
     @State var bottomSheetTranslation: CGFloat = BottomSheetPosition.middle.rawValue
-            
+    
     var bottomSheetTranslationProrated: CGFloat {
-        (bottomSheetTranslation - BottomSheetPosition.middle.rawValue) / (BottomSheetPosition.top.rawValue - BottomSheetPosition.middle.rawValue)
+        let value = (bottomSheetTranslation - BottomSheetPosition.middle.rawValue) / (BottomSheetPosition.top.rawValue - BottomSheetPosition.middle.rawValue)
+        return max(0, value)
     }
+
     
     var body: some View {
         NavigationView {
@@ -49,29 +51,29 @@ struct HomeView: View {
                             .font(.largeTitle)
                             .foregroundColor(.white)
                         
-                            if !isOpen {
-                                VStack(spacing: -10) {
-                                    Text("28°")
-                                        .font(.system(size: 96, weight: .thin))
-                                        .foregroundColor(.white)
-                                    
-                                    Text("Mostly Clear")
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.gray.opacity(0.8))
-                                        .multilineTextAlignment(.center)
-                                }
-                            } else {
-                                HStack(spacing: 10) {
-                                    Text("28°")
-                                    Text(" | ")
-                                    Text("Mostly Clear")
-                                }
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.gray.opacity(0.8))
+                        if !isOpen {
+                            VStack(spacing: -10) {
+                                Text("28°")
+                                    .font(.system(size: 96, weight: .thin))
+                                    .foregroundColor(.white)
+                                
+                                Text("Mostly Clear")
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.gray.opacity(0.8))
+                                    .multilineTextAlignment(.center)
                             }
-
+                        } else {
+                            HStack(spacing: 10) {
+                                Text("28°")
+                                Text(" | ")
+                                Text("Mostly Clear")
+                            }
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.gray.opacity(0.8))
+                        }
+                        
                         
                         Text("H:28°   L:18°")
                             .font(.title3)
@@ -86,12 +88,11 @@ struct HomeView: View {
                     BottomSheetView(position: $bottomSheetPosition) {
 //                        Text(bottomSheetTranslationProrated.formatted())
                     } content: {
-                        ForecastView(bottomSheetTranslationProrated: bottomSheetTranslationProrated) // remove the is open var
+                        ForecastView(bottomSheetTranslationProrated: bottomSheetTranslationProrated)
                             .frame(height: screenHeight)
                     }
                     .onBottomSheetDrag { translation in
                         bottomSheetTranslation = translation / screenHeight
-                        
                         withAnimation(.easeInOut) {
                             if bottomSheetPosition == BottomSheetPosition.top {
                                 isOpen = true
@@ -101,11 +102,9 @@ struct HomeView: View {
                         }
                     }
                     
-                    
-                    
-                    TabBar(action: {})
+                    TabBar(action: {bottomSheetPosition = .top})
                         .offset(y: bottomSheetTranslationProrated*150)
-                    
+
                 }
             }
         }

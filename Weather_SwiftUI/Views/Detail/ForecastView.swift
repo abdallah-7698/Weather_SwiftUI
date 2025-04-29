@@ -11,10 +11,33 @@ struct ForecastView: View {
     
     var bottomSheetTranslationProrated: CGFloat = 1
     
+    @State private var selectedForecast: Int = 0
+    
+    var forecastModels: [Forecast] {
+        selectedForecast == 0 ? Forecast.hourly :  Forecast.daily
+    }
+    
     var body: some View {
 
                 ScrollView {
-                     
+                    VStack(spacing: 0) {
+                        SegmentedControl(selectedIndex: $selectedForecast)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(forecastModels) { forecast in
+                                    ForecastCard(forecast: forecast, forecastPeriod: selectedForecast == 0 ? .hourly : .daily)
+                                        .transition(.offset(x: selectedForecast == 0 ? -430 :  430))
+                                }
+                            }
+                            .padding(.vertical, 12)
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        Image("Forecast Widgets")
+                            .opacity(bottomSheetTranslationProrated)
+                        
+                    }
                 }
                 .backgroundBlur(radius: 25, opaque: true)
                 .background(Color.bottomSheetBackground)
