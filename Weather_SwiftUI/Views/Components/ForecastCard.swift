@@ -44,11 +44,6 @@ struct ForecastCard: View {
                 VStack (spacing: -4) {
                     Image("\(forecast.icon) small")
                     
-                    Text(forecast.probability, format: .percent)
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color.probabilityText)
-                        .opacity(forecast.probability > 0 ? 1 : 0)
                 }
                 .frame(height: 42)
                 

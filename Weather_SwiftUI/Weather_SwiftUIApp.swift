@@ -12,6 +12,12 @@ struct Weather_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .onAppear {
+                    Task {
+                      let weather =  try await WeatherRequest().perform()
+                        print("❌",weather)
+                    }
+                }
         }
     }
 }

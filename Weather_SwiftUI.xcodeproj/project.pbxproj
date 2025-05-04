@@ -7,14 +7,81 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F37C0B22DC7B0600008BDBF /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F37C0AA2DC7B0600008BDBF /* Networking.framework */; };
+		3F37C0B32DC7B0600008BDBF /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F37C0AA2DC7B0600008BDBF /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3FC6522D2DC0FD4500324494 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 3FC6522C2DC0FD4500324494 /* BottomSheet */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3F37C0B02DC7B0600008BDBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F9A6F8D2DBE5FE600BC7FB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F37C0A92DC7B0600008BDBF;
+			remoteInfo = Networking;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3F37C0B72DC7B0600008BDBF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3F37C0B32DC7B0600008BDBF /* Networking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3F37C0AA2DC7B0600008BDBF /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9A6F952DBE5FE600BC7FB7 /* Weather_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3F37C0B82DC7B07E0008BDBF /* Exceptions for "Networking" folder in "Weather_SwiftUI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Dispatcher/DefaultNetworkDispatcher.swift,
+				Dispatcher/NetworkDispatcher.swift,
+				Dispatcher/Request.swift,
+				Dispatcher/URLSessionProtocol.swift,
+				Networking/NetworkError.swift,
+				Networking/ResponseDecoder.swift,
+				Networking/TargetType.swift,
+				Networking/URLRequestConvertible.swift,
+			);
+			target = 3F9A6F942DBE5FE600BC7FB7 /* Weather_SwiftUI */;
+		};
+		3F37C0B92DC7B07E0008BDBF /* Exceptions for "Networking" folder in "Networking" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Dispatcher/DefaultNetworkDispatcher.swift,
+				Dispatcher/NetworkDispatcher.swift,
+				Dispatcher/Request.swift,
+				Dispatcher/URLSessionProtocol.swift,
+				Networking/NetworkError.swift,
+				Networking/ResponseDecoder.swift,
+				Networking/TargetType.swift,
+				Networking/URLRequestConvertible.swift,
+			);
+			target = 3F37C0A92DC7B0600008BDBF /* Networking */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		3F37C0AB2DC7B0600008BDBF /* Networking */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3F37C0B82DC7B07E0008BDBF /* Exceptions for "Networking" folder in "Weather_SwiftUI" target */,
+				3F37C0B92DC7B07E0008BDBF /* Exceptions for "Networking" folder in "Networking" target */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		3F9A6F972DBE5FE600BC7FB7 /* Weather_SwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Weather_SwiftUI;
@@ -23,10 +90,18 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F37C0A72DC7B0600008BDBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F9A6F922DBE5FE600BC7FB7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F37C0B22DC7B0600008BDBF /* Networking.framework in Frameworks */,
 				3FC6522D2DC0FD4500324494 /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9A6F972DBE5FE600BC7FB7 /* Weather_SwiftUI */,
+				3F37C0AB2DC7B0600008BDBF /* Networking */,
 				3FC651F62DC0E7EF00324494 /* Frameworks */,
 				3F9A6F962DBE5FE600BC7FB7 /* Products */,
 			);
@@ -47,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9A6F952DBE5FE600BC7FB7 /* Weather_SwiftUI.app */,
+				3F37C0AA2DC7B0600008BDBF /* Networking.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,7 +137,40 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3F37C0A52DC7B0600008BDBF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		3F37C0A92DC7B0600008BDBF /* Networking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F37C0B42DC7B0600008BDBF /* Build configuration list for PBXNativeTarget "Networking" */;
+			buildPhases = (
+				3F37C0A52DC7B0600008BDBF /* Headers */,
+				3F37C0A62DC7B0600008BDBF /* Sources */,
+				3F37C0A72DC7B0600008BDBF /* Frameworks */,
+				3F37C0A82DC7B0600008BDBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3F37C0AB2DC7B0600008BDBF /* Networking */,
+			);
+			name = Networking;
+			packageProductDependencies = (
+			);
+			productName = Networking;
+			productReference = 3F37C0AA2DC7B0600008BDBF /* Networking.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		3F9A6F942DBE5FE600BC7FB7 /* Weather_SwiftUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F9A6FA02DBE5FE800BC7FB7 /* Build configuration list for PBXNativeTarget "Weather_SwiftUI" */;
@@ -68,10 +178,12 @@
 				3F9A6F912DBE5FE600BC7FB7 /* Sources */,
 				3F9A6F922DBE5FE600BC7FB7 /* Frameworks */,
 				3F9A6F932DBE5FE600BC7FB7 /* Resources */,
+				3F37C0B72DC7B0600008BDBF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3F37C0B12DC7B0600008BDBF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				3F9A6F972DBE5FE600BC7FB7 /* Weather_SwiftUI */,
@@ -94,6 +206,9 @@
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					3F37C0A92DC7B0600008BDBF = {
+						CreatedOnToolsVersion = 16.3;
+					};
 					3F9A6F942DBE5FE600BC7FB7 = {
 						CreatedOnToolsVersion = 16.3;
 					};
@@ -117,11 +232,19 @@
 			projectRoot = "";
 			targets = (
 				3F9A6F942DBE5FE600BC7FB7 /* Weather_SwiftUI */,
+				3F37C0A92DC7B0600008BDBF /* Networking */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F37C0A82DC7B0600008BDBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F9A6F932DBE5FE600BC7FB7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,6 +255,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F37C0A62DC7B0600008BDBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F9A6F912DBE5FE600BC7FB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,7 +271,83 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3F37C0B12DC7B0600008BDBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F37C0A92DC7B0600008BDBF /* Networking */;
+			targetProxy = 3F37C0B02DC7B0600008BDBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3F37C0B52DC7B0600008BDBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = abdallah.mohammed.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3F37C0B62DC7B0600008BDBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = abdallah.mohammed.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		3F9A6F9E2DBE5FE800BC7FB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -325,6 +531,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F37C0B42DC7B0600008BDBF /* Build configuration list for PBXNativeTarget "Networking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F37C0B52DC7B0600008BDBF /* Debug */,
+				3F37C0B62DC7B0600008BDBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3F9A6F902DBE5FE600BC7FB7 /* Build configuration list for PBXProject "Weather_SwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
