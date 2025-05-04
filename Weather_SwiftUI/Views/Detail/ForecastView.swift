@@ -9,17 +9,37 @@ import SwiftUI
 
 struct ForecastView: View {
     
-    @Binding var isOpen: Bool
+    var bottomSheetTranslationProrated: CGFloat = 1
+    @State private var selectedForecast: Int = 0
+    
+    @StateObject private var viewModel = ForecastViewModel()
     
     var body: some View {
-        BottomSheetView(isOpen: $isOpen) {
 
                 ScrollView {
-                     
+                    VStack(spacing: 0) {
+                        SegmentedControl(selectedIndex: $selectedForecast)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(viewModel.forecasts) { forecast in
+                                    ForecastCard(forecast: forecast, forecastPeriod: selectedForecast == 0 ? .hourly : .daily)
+                                        .transition(.offset(x: selectedForecast == 0 ? -430 :  430))
+                                }
+                            }
+                            .padding(.vertical, 12)
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        Image("Forecast Widgets")
+                            .opacity(bottomSheetTranslationProrated)
+                        
+                    }
                 }
                 .backgroundBlur(radius: 25, opaque: true)
                 .background(Color.bottomSheetBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 44))
+                .innerShadow(shape: RoundedRectangle(cornerRadius: 44), color: Color.bottomSheetBorderMiddle, lineWidth: 1, offsetX: 1, offsetY: 1,blur: 0, blendModel: .overlay, opacity: 1 - bottomSheetTranslationProrated )
                 .overlay {
                     Divider()
                         .blendMode(.overlay)
@@ -33,18 +53,12 @@ struct ForecastView: View {
                         .frame(width: 60, height: 6 )
                         .frame(height: 20)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                        .onTapGesture { isOpen.toggle() }
                 }
             
-        }
     }
 }
 
 #Preview {
-    ForecastView(isOpen: .constant(true))
+    ForecastView()
         .background(Color.background)
-}
-
-func aaaaa(x: Int) {
-    print("Text this code \(x)")
 }

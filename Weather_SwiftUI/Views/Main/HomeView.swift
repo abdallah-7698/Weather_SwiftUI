@@ -6,53 +6,106 @@
 //
 
 import SwiftUI
+import BottomSheet
+
+enum BottomSheetPosition: CGFloat, CaseIterable {
+    case top = 0.81 // 702/844
+    case middle = 0.385 // 325/844
+}
 
 struct HomeView: View {
     
     @State private var isOpen: Bool = false
+    @State var bottomSheetPosition: BottomSheetPosition = .middle
+    @State var bottomSheetTranslation: CGFloat = BottomSheetPosition.middle.rawValue
+    
+    var bottomSheetTranslationProrated: CGFloat {
+        let value = (bottomSheetTranslation - BottomSheetPosition.middle.rawValue) / (BottomSheetPosition.top.rawValue - BottomSheetPosition.middle.rawValue)
+        return max(0, value)
+    }
+
     
     var body: some View {
         NavigationView {
-            ZStack(alignment: .top) {
-                Color.background
-                    .ignoresSafeArea(.all)
+            GeometryReader { geometry in
                 
-                Image("Background")
-                    .resizable()
-                    .ignoresSafeArea(.all)
+                let screenHeight = geometry.size.height + geometry.safeAreaInsets.top + geometry.safeAreaInsets.bottom
                 
-                Image("House")
-                    .padding(.top, 257)
-                  
-                VStack(spacing: 0) {
-                    Text("Montreal")
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
+                let imageOffset = screenHeight + 36
+                
+                ZStack(alignment: .top) {
+                    Color.background
+                        .ignoresSafeArea(.all)
                     
-                    VStack(spacing: -10) {
-                        Text("28°")
-                            .font(.system(size: 96, weight: .thin))
+                    Image("Background")
+                        .resizable()
+                        .ignoresSafeArea(.all)
+                        .offset(y: -bottomSheetTranslationProrated*imageOffset)
+                    
+                    Image("House")
+                        .padding(.top, 257)
+                        .offset(y: -bottomSheetTranslationProrated*imageOffset)
+                    
+                    VStack(spacing: 0) {
+                        Text("Montreal")
+                            .font(.largeTitle)
                             .foregroundColor(.white)
                         
-                        Text("Mostly Clear")
+                        if !isOpen {
+                            VStack(spacing: -10) {
+                                Text("28°")
+                                    .font(.system(size: 96, weight: .thin))
+                                    .foregroundColor(.white)
+                                
+                                Text("Mostly Clear")
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.gray.opacity(0.8))
+                                    .multilineTextAlignment(.center)
+                            }
+                        } else {
+                            HStack(spacing: 10) {
+                                Text("28°")
+                                Text(" | ")
+                                Text("Mostly Clear")
+                            }
                             .font(.title3)
                             .fontWeight(.semibold)
                             .foregroundColor(.gray.opacity(0.8))
-                            .multilineTextAlignment(.center)
+                        }
+                        
+                        
+                        Text("H:28°   L:18°")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .opacity(1-bottomSheetTranslationProrated)
+                        
+                    }
+                    .padding(.top, 51)
+                    .offset(y: -bottomSheetTranslationProrated*46)
+                    
+                    BottomSheetView(position: $bottomSheetPosition) {
+//                        Text(bottomSheetTranslationProrated.formatted())
+                    } content: {
+                        ForecastView(bottomSheetTranslationProrated: bottomSheetTranslationProrated)
+                            .frame(height: screenHeight)
+                    }
+                    .onBottomSheetDrag { translation in
+                        bottomSheetTranslation = translation / screenHeight
+                        withAnimation(.easeInOut) {
+                            if bottomSheetPosition == BottomSheetPosition.top {
+                                isOpen = true
+                            } else {
+                                isOpen = false
+                            }
+                        }
                     }
                     
-                    Text("H:28°   L:18°")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                    
+                    TabBar(action: {bottomSheetPosition = .top})
+                        .offset(y: bottomSheetTranslationProrated*150)
+
                 }
-                .padding(.top, 51)
-                
-                ForecastView(isOpen: $isOpen)
-                
-                TabBar(action: {})
-                
             }
         }
         
