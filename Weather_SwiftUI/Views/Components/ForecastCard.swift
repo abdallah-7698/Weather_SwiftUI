@@ -42,7 +42,10 @@ struct ForecastCard: View {
                     .fontWeight(.semibold)
                 
                 VStack (spacing: -4) {
-                    Image("\(forecast.icon) small")
+                    Image(forecast.icon)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 65)
                     
                 }
                 .frame(height: 42)

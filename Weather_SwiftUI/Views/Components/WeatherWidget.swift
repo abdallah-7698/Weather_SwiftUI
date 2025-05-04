@@ -37,8 +37,10 @@ struct WeatherWidget: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: 0) {
-                    Image("\(forecast.icon) large")
-                        .padding(.trailing, 4)
+                    Image(forecast.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 200)
                     
                     Text("\(forecast.weather.rawValue)")
                         .font(.headline)

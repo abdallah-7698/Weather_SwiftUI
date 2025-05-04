@@ -10,12 +10,9 @@ import SwiftUI
 struct ForecastView: View {
     
     var bottomSheetTranslationProrated: CGFloat = 1
-    
     @State private var selectedForecast: Int = 0
     
-    var forecastModels: [Forecast] {
-        selectedForecast == 0 ? Forecast.hourly :  Forecast.daily
-    }
+    @StateObject private var viewModel = ForecastViewModel()
     
     var body: some View {
 
@@ -25,7 +22,7 @@ struct ForecastView: View {
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 12) {
-                                ForEach(forecastModels) { forecast in
+                                ForEach(viewModel.forecasts) { forecast in
                                     ForecastCard(forecast: forecast, forecastPeriod: selectedForecast == 0 ? .hourly : .daily)
                                         .transition(.offset(x: selectedForecast == 0 ? -430 :  430))
                                 }

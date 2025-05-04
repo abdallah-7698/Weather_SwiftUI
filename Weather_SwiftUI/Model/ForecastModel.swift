@@ -1,9 +1,3 @@
-//
-//  ForecastModel.swift
-//  Weather_SwiftUI
-//
-//  Created by name on 29/04/2025.
-//
 
 import Foundation
 
@@ -42,23 +36,25 @@ struct Forecast: Identifiable {
     var icon: String {
         switch weather {
         case .clear:
-            return "Moon"
+            return "Sun"
         case .cloudy, .misty, .hazy, .foggy:
-            return "Cloud"
+            return "Sun cloud"
         case .rainy, .stormy, .squall, .tornado:
-            return "Sun cloud angled rain"
+            return "Cloud little rain"
         case .sunny:
             return "Sun"
         case .windy:
-            return "Moon cloud fast wind"
+            return "Sun fast wind"
         case .snowy:
-            return "Moon cloud mid rain"
+            return "Sun cloud slow wind"
         case .dusty, .sandstorm, .ashfall:
             return "Tornado"
         }
     }
     
 }
+
+// MARK:- Mock Data
 
 extension Forecast {
     static let hour: TimeInterval = 60 * 60

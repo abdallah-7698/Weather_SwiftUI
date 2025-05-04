@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct WeatherRequest: RequestType {
+struct ForecastRequest: RequestType {
     
     var baseUrl: URL = URL(string: "https://api.openweathermap.org/data/2.5")!
     var path: String = "/forecast"
@@ -12,14 +12,15 @@ struct WeatherRequest: RequestType {
     var queryParameters: [String : String] = ["q" : "Cairo" , "appid" : "b7f1d80b093cadc7f43148b44aeb0060"]
     
     public let responseDecoder: (Data) throws -> [Forecast] = { data in
-        try JSONDecoder().decode(WeatherResponse.self, from: data).convertToForecasts()
+        try JSONDecoder().decode(ForecastResponse.self, from: data).convertToForecasts()
     }
     
 }
 
 // MARK: - Adapter Convetr from API responcr The model i use --> [Forecast]
+
 // WeatherResponse struct to match the API response
-struct WeatherResponse: Decodable {
+struct  ForecastResponse: Decodable {
     struct City: Decodable {
         var name: String
     }
@@ -47,35 +48,37 @@ struct WeatherResponse: Decodable {
         switch description.lowercased() {
         case "clear":
             return .clear
-        case "clouds":
+        case "clouds", "overcast":
             return .cloudy
-        case "rain":
+        case "rain", "drizzle":
             return .rainy
-        case "storm", "thunderstorm":
+        case "storm", "thunderstorm", "squall":
             return .stormy
         case "sun", "fair":
             return .sunny
         case "tornado":
             return .tornado
-        case "wind":
+        case "wind", "breeze":
             return .windy
         case "snow":
             return .snowy
-        case "mist", "fog":
-            return .cloudy // You can choose to return cloudy here or a separate case like "foggy" if you prefer
+        case "mist":
+            return .misty
+        case "fog":
+            return .foggy
         case "haze":
-            return .cloudy // Same as fog, could be treated similarly
-        case "dust", "sandstorm", "ashfall":
+            return .hazy
+        case "dust":
             return .dusty
-        case "squall":
-            return .stormy
-        case "drizzle":
-            return .rainy
+        case "sandstorm":
+            return .sandstorm
+        case "ashfall":
+            return .ashfall
         default:
-            return .sunny // Defaulting to sunny if the description is unknown
+            return .sunny // Or return .clear or even .cloudy, depending on your fallback preference
         }
     }
-    
+
     // Method to convert WeatherResponse to an array of Forecasts
     func convertToForecasts() -> [Forecast] {
         return list.map { data in
